@@ -65,7 +65,7 @@ run_unit_tests() {
 run_dev() {
     print_status "Starting development server..."
     export PYTHONPATH="${PYTHONPATH}:$(pwd)/src"
-    python -m src.app.main
+    python -m app.main
 }
 
 # Clean up

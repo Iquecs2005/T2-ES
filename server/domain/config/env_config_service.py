@@ -2,8 +2,8 @@ import os
 from pathlib import Path
 from typing import Dict, Optional
 
-from src.core.config.env_config_validation import EnvConfigValidation
-from src.core.config.settings import DATABASE_URL, LOG_DIR, PROJECT_ROOT
+from domain.config.env_config_validation import EnvConfigValidation
+from domain.config.settings import DATABASE_URL, LOG_DIR, PROJECT_ROOT
 
 
 class EnvConfigService:

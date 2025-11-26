@@ -1,7 +1,9 @@
 from flask_cors import CORS
 from flask_openapi3 import Info, OpenAPI
-
-from src.infra.logging import configure_logging
+from app.dependencies import (
+    get_env_config_service,
+)
+from infra.logging import configure_logging
 
 config_service = get_env_config_service()
 
@@ -14,18 +16,6 @@ def create_app() -> OpenAPI:
     configure_logging()
     application = OpenAPI(__name__, info=info)
     CORS(application)
-
-    register_docs_routes(application)
-    register_product_routes(
-        application,
-        add_use_case=get_add_product_use_case(),
-        update_use_case=get_update_product_use_case(),
-        list_use_case=get_list_products_use_case(),
-        get_use_case=get_get_product_use_case(),
-        delete_use_case=get_delete_product_use_case(),
-    )
-    register_comment_routes(application, get_add_comment_use_case())
-    register_health_routes(application, get_health_check_use_case())
 
     return application
 
