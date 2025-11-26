@@ -11,7 +11,7 @@ class AddRecipeUseCase(UseCase):
         self._repository = repository
 
     def execute(
-        self, nome: str
+        self, titulo: str, descricao: str, modo_preparo: str, preco: float
     ) -> Recipe:
-        recipe = Recipe(nome=nome)
+        recipe = Recipe(titulo=titulo, descricao=descricao, modo_preparo=modo_preparo, preco=preco)
         return self._repository.add(recipe)

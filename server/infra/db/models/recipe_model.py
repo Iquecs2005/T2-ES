@@ -9,5 +9,8 @@ class RecipeModel(Base):
     __tablename__ = "receita"
 
     id: Optional[int] = Column("pk_receita", Integer, primary_key=True)
-    nome = Column(String(140), unique=True, nullable=False)
+    titulo = Column(String(140), unique=False, nullable=False)
+    descricao = Column(String(300), unique=False, nullable=False)
+    modo_preparo = Column(String(1000), unique=False, nullable=False)
+    preco = Column(Float, nullable=False)
     data_insercao = Column(DateTime, default=datetime.utcnow)

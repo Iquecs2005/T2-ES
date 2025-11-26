@@ -1,5 +1,5 @@
-from infra.repositories.sqlalchemy_product_repository import (
-    SqlAlchemyProductRepository,
+from infra.repositories.sqlalchemy_recipe_repository import (
+    SqlAlchemyRecipeRepository,
 )
 
-__all__ = ["SqlAlchemyProductRepository"]
+__all__ = ["SqlAlchemyRecipeRepository"]

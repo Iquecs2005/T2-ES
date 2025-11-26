@@ -8,7 +8,7 @@ from infra.db.models.recipe_model import RecipeModel
 from infra.mappers import recipe_mapper
 
 
-class SqlAlchemyProductRepository(RecipeRepository):
+class SqlAlchemyRecipeRepository(RecipeRepository):
     """SQLAlchemy implementation of the recipe repository port."""
 
     def __init__(self, session_factory: Callable[[], Session]):
@@ -18,12 +18,19 @@ class SqlAlchemyProductRepository(RecipeRepository):
         session = self._session_factory()
         try:
             model = RecipeModel(
-                nome=recipe.nome,
+                titulo=recipe.titulo,
+                descricao=recipe.descricao,
+                modo_preparo=recipe.modo_preparo,
+                preco=recipe.preco,
                 data_insercao=recipe.data_insercao,
             )
+            print("InicioProblema")
             session.add(model)
+            print("depois do add")
             session.commit()
+            print("depois do commit")
             session.refresh(model)
+            print("depois do refresh")
             return recipe_mapper.to_domain(model)
         except IntegrityError:
             session.rollback()

@@ -30,7 +30,10 @@ def register_recipe_routes(
     def add_receita(form: RecipeSchema):
         try:
             receita = add_use_case.execute(
-                form.nome
+                titulo=form.titulo,
+                descricao=form.descricao,
+                modo_preparo=form.modo_preparo,
+                preco=form.preco,
             )
             return apresenta_receita(receita), 200
         except Exception:
