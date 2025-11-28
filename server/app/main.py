@@ -2,6 +2,7 @@ from flask_cors import CORS
 from flask_openapi3 import Info, OpenAPI
 from app.dependencies import (
     get_env_config_service,
+    get_engine,
 )
 from app.routes.auth_routes import router as auth_router
 from infra.logging import configure_logging
@@ -17,6 +18,8 @@ def create_app() -> OpenAPI:
     configure_logging()
     application = OpenAPI(__name__, info=info)
     CORS(application)
+    # Garante criação do banco/tabelas na inicialização
+    get_engine()
     application.register_api(auth_router)
 
     return application
