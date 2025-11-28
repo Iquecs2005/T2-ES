@@ -15,6 +15,10 @@ def get_env_config_service() -> EnvConfigService:
 
 @lru_cache
 def get_engine():
+    # Garantir que os modelos estejam registrados no metadata antes de criar as tabelas.
+    # Import local para evitar dependência circular e assegurar criação da tabela users.
+    from infra.repositories import user_repository_sqlite  # noqa: F401
+
     engine = create_engine_from_url(get_env_config_service().get_database_url())
     init_db(engine)
     return engine
