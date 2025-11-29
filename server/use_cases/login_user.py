@@ -16,11 +16,11 @@ class LoginUserUseCase:
 
         user = self._repository.get_by_email(normalized_email)
         if not user:
-            raise InvalidCredentialsError("Invalid email or password")
+            raise InvalidCredentialsError("E-mail inexistente")
 
         if not self._password_hasher.verify_password(
             valid_password, user.password_hash
         ):
-            raise InvalidCredentialsError("Invalid email or password")
+            raise InvalidCredentialsError("Email ou senha incorreto")
 
         return user

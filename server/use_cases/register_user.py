@@ -15,7 +15,7 @@ class RegisterUserUseCase:
         valid_password = validate_password(password)
 
         if self._repository.get_by_email(normalized_email):
-            raise DuplicateUserError("Email already registered")
+            raise DuplicateUserError("E-mail já registrado")
 
         password_hash = self._password_hasher.hash_password(valid_password)
         user = User(id=None, email=normalized_email, password_hash=password_hash)

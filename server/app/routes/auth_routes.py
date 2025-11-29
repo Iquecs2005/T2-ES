@@ -1,5 +1,5 @@
 from flask_openapi3 import APIBlueprint, Tag
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel
 
 from app.dependencies import (
     get_login_user_use_case,
@@ -18,13 +18,13 @@ router = APIBlueprint("auth", __name__, url_prefix="/auth", abp_tags=[auth_tag])
 
 
 class SignUpBody(BaseModel):
-    email: EmailStr
-    password: str = Field(min_length=6, description="User password")
+    email: str
+    password: str
 
 
 class LoginBody(BaseModel):
-    email: EmailStr
-    password: str = Field(min_length=6, description="User password")
+    email: str
+    password: str
 
 
 @router.post("/signup", tags=[auth_tag])

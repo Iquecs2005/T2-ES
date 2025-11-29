@@ -8,17 +8,17 @@ EMAIL_PATTERN = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 def normalize_email(email: str) -> str:
     if email is None:
-        raise ValidationError("Email is required")
+        raise ValidationError("E-mail é obrigatório")
     normalized = email.strip().lower()
     if not normalized or not EMAIL_PATTERN.match(normalized):
-        raise ValidationError("Invalid email")
+        raise ValidationError("E-mail inválido")
     return normalized
 
 
 def validate_password(password: str) -> str:
     if password is None:
-        raise ValidationError("Password is required")
+        raise ValidationError("Senha é obrigatória")
     cleaned = password.strip()
     if len(cleaned) < 6:
-        raise ValidationError("Password must be at least 6 characters long")
+        raise ValidationError("Senha deve ter pelo menos 6 caracteres")
     return cleaned
