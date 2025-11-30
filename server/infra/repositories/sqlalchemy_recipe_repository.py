@@ -40,3 +40,11 @@ class SqlAlchemyRecipeRepository(RecipeRepository):
             raise
         finally:
             session.close()
+
+    def get_by_id(self, recipe_id: int) -> Optional[Recipe]:
+        session = self._session_factory()
+        try:
+            model: Optional[RecipeModel] = session.get(RecipeModel, recipe_id)
+            return recipe_mapper.to_domain(model) if model else None
+        finally:
+            session.close()

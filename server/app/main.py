@@ -3,6 +3,7 @@ from flask_openapi3 import Info, OpenAPI
 from app.dependencies import (
     get_env_config_service,
     get_add_recipe_use_case,
+    get_view_recipe_use_case,
 )
 from app.routes import (
     register_docs_routes,
@@ -23,7 +24,11 @@ def create_app() -> OpenAPI:
     CORS(application)
 
     register_docs_routes(application)
-    register_recipe_routes(application, add_use_case=get_add_recipe_use_case())
+    register_recipe_routes(
+        application,
+        add_use_case=get_add_recipe_use_case(),
+        view_use_case=get_view_recipe_use_case(),
+    )
 
     return application
 

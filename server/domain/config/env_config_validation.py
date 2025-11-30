@@ -14,10 +14,10 @@ class EnvConfigValidation(BaseModel):
     @validator("SERVICE_NAME", "SERVICE_VERSION", "SERVICE_HOST", "DATABASE_URL", pre=True)
     def _strip_values(cls, value: Optional[str]) -> str:
         if value is None:
-            raise ValueError("Valor obrigatório ausente")
+            raise ValueError("Valor obrigatorio ausente")
         value = str(value).strip()
         if not value:
-            raise ValueError("Valor obrigatório ausente")
+            raise ValueError("Valor obrigatorio ausente")
         return value
 
     @validator("LOG_LEVEL")

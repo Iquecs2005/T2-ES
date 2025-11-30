@@ -7,7 +7,7 @@ from domain.config.settings import DATABASE_URL, LOG_DIR, PROJECT_ROOT
 
 
 class EnvConfigService:
-    """Serviço responsável por carregar e validar as configurações de ambiente."""
+    """Servico responsavel por carregar e validar as configuracoes de ambiente."""
 
     _instance: Optional["EnvConfigService"] = None
     _config: Optional[EnvConfigValidation] = None

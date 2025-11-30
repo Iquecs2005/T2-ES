@@ -12,3 +12,7 @@ class RecipeRepository(ABC):
     @abstractmethod
     def add(self, recipe: Recipe) -> Recipe:
         """Persist a product and return the stored instance."""
+
+    @abstractmethod
+    def get_by_id(self, recipe_id: int) -> Optional[Recipe]:
+        """Return the recipe with the given id, or None if not found."""
