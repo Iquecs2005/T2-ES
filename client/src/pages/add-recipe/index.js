@@ -6,10 +6,10 @@ form.addEventListener("submit", async(event) => {
     event.preventDefault();
 
     const data = {
-        title: document.getElementById("title"),
-        description: document.getElementById("description"),
-        preparation_method: document.getElementById("prepmethod"),
-        price: document.getElementById("price")
+        title: document.getElementById("title").value,
+        description: document.getElementById("description").value,
+        preparation_method: document.getElementById("prepmethod").value,
+        price: document.getElementById("price").value
     }
 
     try {
