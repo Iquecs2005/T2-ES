@@ -35,5 +35,3 @@ class Recipe:
         self.descricao = descricao
         self.modo_preparo = modo_preparo
         self.preco = preco
-
-    #data_insercao: datetime = field(default_factory=datetime.now(datetime.timezone.utc))
