@@ -17,6 +17,7 @@ class SqlAlchemyRecipeRepository(RecipeRepository):
     def add(self, recipe: Recipe) -> Recipe:
         session = self._session_factory()
         try:
+            print("c")
             model = RecipeModel(
                 titulo=recipe.titulo,
                 descricao=recipe.descricao,

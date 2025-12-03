@@ -1,8 +1,10 @@
-const BASE_URL = "http://localhost:8000"
+import config from "../config";
+
+const BASE_URL = "http://localhost:5000"
 
 export async function addRecipe(data) {
 
-    const res = await fetch(`${BASE_URL}/receitas/add`, {
+    const res = await fetch(`${config.apiUrl}/receita`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data),
