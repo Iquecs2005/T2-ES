@@ -37,3 +37,15 @@ class SqlAlchemyRecipeRepository(RecipeRepository):
             raise
         finally:
             session.close()
+
+    def get_by_id(self, recipe_id: int) -> Optional[Recipe]:
+        session = self._session_factory()
+        try:
+            model = (
+                session.query(RecipeModel)
+                .filter(RecipeModel.id == recipe_id)
+                .first()
+            )
+            return recipe_mapper.to_domain(model) if model else None
+        finally:
+            session.close()

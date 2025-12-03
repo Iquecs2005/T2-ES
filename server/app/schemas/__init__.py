@@ -1,6 +1,7 @@
 from app.schemas.error import ErrorSchema
 from app.schemas.recipe import (
     RecipeSchema,
+    RecipeSearchByIdSchema,
     RecipeViewSchema,
     apresenta_receita,
 )
@@ -8,6 +9,7 @@ from app.schemas.recipe import (
 __all__ = [
     "ErrorSchema",
     "RecipeSchema",
+    "RecipeSearchByIdSchema",
     "RecipeViewSchema",
     "apresenta_receita",
 ]

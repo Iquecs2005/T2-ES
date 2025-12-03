@@ -1,7 +1,7 @@
 import { config } from "../config.js";
 
-export async function addRecipe(data) {
-
+export async function addRecipe(data) 
+{
     let url = config.apiUrl + '/receita';
 
     try
