@@ -7,7 +7,6 @@ from domain.interfaces.usecase_interface import UseCase
 
 class GetRecipeUseCase(UseCase):
     """Use case responsible for registering a new product."""
-
     def __init__(self, repository: RecipeRepository):
         self._repository = repository
 
