@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gourmet at Home - Login</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="card">
+    <h1 id="form-title">Cadastro</h1>
+    <p class="subtitle" id="form-subtitle">Crie sua conta para pedir receitas</p>
+
+
+    <form id="auth-form">
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" placeholder="voce@email.com" autocomplete="email" required />
+      </div>
+      <div class="field">
+        <label for="password">Senha</label>
+        <input id="password" name="password" type="password" placeholder="********" autocomplete="current-password" required />
+        <button type="button" id="toggle-password" class="toggle-password" aria-label="Mostrar ou ocultar senha">Mostrar</button>
+      </div>
+      <button type="submit" class="btn" id="submit-btn">Criar conta</button>
+    </form>
+
+
+    <div class="muted-link">
+      <span id="toggle-copy">Já tem conta?</span>
+      <button type="button" id="toggle-btn">Entrar</button>
+    </div>
+
+
+    <div class="status" id="status-box"></div>
+
+
+    <div class="footer">
+      <a href="#">Termos de Uso</a> · <a href="#">Política de Privacidade</a>
+    </div>
+  </div>
+
+
+  <script src="./index.js"></script>
+</body>
+</html>

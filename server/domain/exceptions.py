@@ -6,3 +6,6 @@ class RecipeNotFound(CoreError):
 
 class RecipeInvalidTitle(CoreError):
     """Raised when a product has a invalid title"""
+
+class UserNotFound(CoreError):
+    """Raised when a user lookup fails."""

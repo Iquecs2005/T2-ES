@@ -3,11 +3,14 @@ from flask_openapi3 import Info, OpenAPI
 from app.dependencies import (
     get_env_config_service,
     get_add_recipe_use_case,
-    get_get_recipe_use_case
+    get_get_recipe_use_case,
+    get_add_user_use_case,
+    get_get_user_use_case,
 )
 from app.routes import (
     register_docs_routes,
     register_recipe_routes,
+    register_user_routes,
 )
 from infra.logging import configure_logging
 
@@ -25,6 +28,7 @@ def create_app() -> OpenAPI:
 
     register_docs_routes(application)
     register_recipe_routes(application, add_use_case=get_add_recipe_use_case(), get_use_case=get_get_recipe_use_case())
+    register_user_routes(application, add_use_case=get_add_user_use_case(), get_use_case=get_get_user_use_case())
 
     return application
 

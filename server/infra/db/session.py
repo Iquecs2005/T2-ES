@@ -7,6 +7,7 @@ from domain.config.settings import DATABASE_DIR, DATABASE_URL
 from infra.db.base import Base
 from infra.db.models import (  # noqa: F401 - ensure metadata
     RecipeModel,
+    UserModel,
 )
 
 DATABASE_DIR.mkdir(parents=True, exist_ok=True)
