@@ -1,17 +1,11 @@
 from domain.config.env_config_service import EnvConfigService
 from domain.config.env_config_validation import EnvConfigValidation
-from domain.config.settings import (
-    DATABASE_DIR,
-    DATABASE_URL,
-    LOG_DIR,
-    PROJECT_ROOT,
-)
+from domain.config.settings import DATABASE_URL, LOG_DIR, PROJECT_ROOT
 
 __all__ = [
     "EnvConfigService",
     "EnvConfigValidation",
     "PROJECT_ROOT",
-    "DATABASE_DIR",
     "DATABASE_URL",
     "LOG_DIR",
 ]

@@ -1,11 +1,10 @@
 from functools import lru_cache
 
 from domain.config import EnvConfigService
-from infra.db.database import create_engine_from_url, create_session_factory, init_db
-from infra.repositories.user_repository_sqlite import SQLAlchemyUserRepository
+from infra.db.session import engine, SessionLocal
+from infra.repositories import SqlAlchemyUserRepository
 from infra.security.password_hasher import WerkzeugPasswordHasher
-from use_cases.login_user import LoginUserUseCase
-from use_cases.register_user import RegisterUserUseCase
+from domain.use_cases.auth_use_cases import LoginUserUseCase, RegisterUserUseCase
 
 
 @lru_cache
@@ -15,23 +14,17 @@ def get_env_config_service() -> EnvConfigService:
 
 @lru_cache
 def get_engine():
-    # Garantir que os modelos estejam registrados no metadata antes de criar as tabelas.
-    # Import local para evitar dependência circular e assegurar criação da tabela users.
-    from infra.repositories import user_repository_sqlite  # noqa: F401
-
-    engine = create_engine_from_url(get_env_config_service().get_database_url())
-    init_db(engine)
     return engine
 
 
 @lru_cache
 def get_session_factory():
-    return create_session_factory(engine=get_engine())
+    return SessionLocal
 
 
 @lru_cache
-def get_user_repository() -> SQLAlchemyUserRepository:
-    return SQLAlchemyUserRepository(get_session_factory())
+def get_user_repository() -> SqlAlchemyUserRepository:
+    return SqlAlchemyUserRepository(get_session_factory())
 
 
 @lru_cache

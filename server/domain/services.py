@@ -2,7 +2,7 @@ from typing import Protocol
 
 
 class PasswordHasher(Protocol):
-    """Abstraction for hashing and verifying passwords."""
+    """Abstração para hashing e verificação de senhas."""
 
     def hash_password(self, password: str) -> str:
         ...

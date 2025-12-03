@@ -4,7 +4,7 @@ from app.dependencies import (
     get_env_config_service,
     get_engine,
 )
-from app.routes.auth_routes import router as auth_router
+from app.routes import register_auth_routes, register_docs_routes
 from infra.logging import configure_logging
 
 config_service = get_env_config_service()
@@ -20,7 +20,8 @@ def create_app() -> OpenAPI:
     CORS(application)
     # Garante criação do banco/tabelas na inicialização
     get_engine()
-    application.register_api(auth_router)
+    register_docs_routes(application)
+    register_auth_routes(application)
 
     return application
 
