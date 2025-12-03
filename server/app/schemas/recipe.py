@@ -11,6 +11,9 @@ class RecipeSchema(BaseModel):
     modo_preparo: str
     preco: float
 
+class RecipeSearchByIdSchema(BaseModel):
+    id : int
+
 class RecipeViewSchema(BaseModel):
     """Representação de uma receita."""
 

@@ -1,7 +1,7 @@
 import { config } from "../config.js";
 
-export async function addRecipe(data) {
-
+export async function addRecipe(data) 
+{
     let url = config.apiUrl + '/receita';
 
     try
@@ -16,6 +16,31 @@ export async function addRecipe(data) {
         });
         
         return res;
+    }
+    catch (error)
+    {
+        console.error("Error adding recipe:", error);
+        throw error
+    }
+}
+
+export async function getRecipe(id) 
+{
+    let url = config.apiUrl + `/receita?id=${encodeURIComponent(id)}`;
+    let recipe;
+
+    try
+    {
+        const res = await fetch(url, {
+            method: 'get',
+        })
+        .then((response) => response.json())
+        .then((data) => recipe = data)
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+        
+        return recipe;
     }
     catch (error)
     {
