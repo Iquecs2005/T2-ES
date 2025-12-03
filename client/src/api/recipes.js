@@ -23,3 +23,28 @@ export async function addRecipe(data)
         throw error
     }
 }
+
+export async function getRecipe(id) 
+{
+    let url = config.apiUrl + `/get_receita?id=${encodeURIComponent(id)}`;
+    let recipe;
+
+    try
+    {
+        const res = await fetch(url, {
+            method: 'post',
+        })
+        .then((response) => response.json())
+        .then((data) => recipe = data)
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+        
+        return recipe;
+    }
+    catch (error)
+    {
+        console.error("Error adding recipe:", error);
+        throw error
+    }
+}

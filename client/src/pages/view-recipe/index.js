@@ -1,18 +1,17 @@
-import { addRecipe } from "../../api/recipes.js";
+import { getRecipe } from "../../api/recipes.js";
 
 const form  = document.getElementById("add-recipe-form");
 
 form.addEventListener("submit", async(event) => {
     event.preventDefault();
 
-    const formData = new FormData();
-    formData.append('titulo', document.getElementById("title").value);
-    formData.append('descricao', document.getElementById("description").value);
-    formData.append('modo_preparo', document.getElementById("prepmethod").value);
-    formData.append('preco', document.getElementById("price").value);
-
-    let res = await addRecipe(formData)
+    let res = await getRecipe(Number(document.getElementById("id").value));
     
+    document.getElementById("title").innerHTML = res.titulo
+    document.getElementById("description").innerHTML = res.descricao
+    document.getElementById("prepare_mode").innerHTML = res.modo_preparo
+    document.getElementById("price").innerHTML = res.preco
+
     // try {
     //     const response = await addRecipe(data);
     //     console.log("Recipe Added:", response);
@@ -20,5 +19,4 @@ form.addEventListener("submit", async(event) => {
     // {
     //     console.error(error);
     // }
-
 })
