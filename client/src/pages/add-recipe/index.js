@@ -11,7 +11,7 @@ form.addEventListener("submit", async(event) => {
     formData.append('modo_preparo', document.getElementById("prepmethod").value);
     formData.append('preco', document.getElementById("price").value);
 
-    let res = addRecipe(formData)
+    let res = await addRecipe(formData)
     
     // try {
     //     const response = await addRecipe(data);
