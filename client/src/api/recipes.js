@@ -2,7 +2,10 @@ const BASE_URL = "http://localhost:8000";
 
 export async function getRecipe(recipe_id) {
 
-    const res = await fetch(`${BASE_URL}/receita/${recipe_id}`);
+    const res = await fetch(`${BASE_URL}/receita/${recipe_id}`, {
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+    });
 
     if (!res.ok) {
         throw new Error("Failed to get recipe.");
