@@ -26,13 +26,13 @@ export async function addRecipe(data)
 
 export async function getRecipe(id) 
 {
-    let url = config.apiUrl + `/get_receita?id=${encodeURIComponent(id)}`;
+    let url = config.apiUrl + `/receita?id=${encodeURIComponent(id)}`;
     let recipe;
 
     try
     {
         const res = await fetch(url, {
-            method: 'post',
+            method: 'get',
         })
         .then((response) => response.json())
         .then((data) => recipe = data)

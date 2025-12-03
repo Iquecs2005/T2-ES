@@ -42,8 +42,8 @@ def register_recipe_routes(
         except Exception:
             return {"mesage": "Não foi possível salvar novo item :/"}, 400
         
-    @app.post(
-        "/get_receita",
+    @app.get(
+        "/receita",
         tags=[receita_tag],
         responses={
             "200": RecipeViewSchema,
