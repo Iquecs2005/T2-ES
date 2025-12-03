@@ -4,3 +4,5 @@ class CoreError(Exception):
 class RecipeNotFound(CoreError):
     """Raised when a product lookup fails."""
 
+class RecipeInvalidTitle(CoreError):
+    """"""

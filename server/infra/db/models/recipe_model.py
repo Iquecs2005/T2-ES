@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from sqlalchemy import Column, DateTime, Float, Integer, String
@@ -13,4 +13,4 @@ class RecipeModel(Base):
     descricao = Column(String(300), unique=False, nullable=False)
     modo_preparo = Column(String(1000), unique=False, nullable=False)
     preco = Column(Float, nullable=False)
-    data_insercao = Column(DateTime, default=datetime.utcnow)
+    data_insercao = Column(DateTime, default=datetime.now(timezone.utc))
