@@ -17,7 +17,6 @@ class SqlAlchemyRecipeRepository(RecipeRepository):
     def add(self, recipe: Recipe) -> Recipe:
         session = self._session_factory()
         try:
-            print("c")
             model = RecipeModel(
                 titulo=recipe.titulo,
                 descricao=recipe.descricao,
@@ -25,13 +24,10 @@ class SqlAlchemyRecipeRepository(RecipeRepository):
                 preco=recipe.preco,
                 data_insercao=recipe.data_insercao,
             )
-            print("InicioProblema")
+            
             session.add(model)
-            print("depois do add")
             session.commit()
-            print("depois do commit")
             session.refresh(model)
-            print("depois do refresh")
             return recipe_mapper.to_domain(model)
         except IntegrityError:
             session.rollback()

@@ -29,7 +29,6 @@ def register_recipe_routes(
     )
     def add_receita(form: RecipeSchema):
         try:
-            print("a")
             receita = add_use_case.execute(
                 titulo=form.titulo,
                 descricao=form.descricao,
