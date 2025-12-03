@@ -1,4 +1,4 @@
-from typing import Callable, List, Optional
+from typing import Callable, Optional
 
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session

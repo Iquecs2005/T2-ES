@@ -1,4 +1,3 @@
-from typing import Optional
 
 from domain.exceptions import RecipeNotFound
 from domain.entities.recipe import Recipe

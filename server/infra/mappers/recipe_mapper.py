@@ -1,4 +1,3 @@
-from typing import List
 
 from domain.entities.recipe import Recipe
 from infra.db.models.recipe_model import RecipeModel

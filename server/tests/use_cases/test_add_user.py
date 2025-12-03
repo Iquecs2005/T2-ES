@@ -1,4 +1,3 @@
-import pytest
 
 from domain.entities.user import User
 from domain.interfaces.user_repository import UserRepository
@@ -37,13 +36,13 @@ def test_execute_adds_new_user() -> None:
     assert repository.get("John", "abc") is created
 
 
-def test_execute_duplicate_products() -> None:
+def test_execute_duplicate_user() -> None:
     repository = InMemoryUserRepository()
     use_case = AddUserUseCase(repository)
 
-    created1 = use_case.execute(login='John', senha='abc')
+    use_case.execute(login='John', senha='abc')
     try:
-        created2 = use_case.execute(login='John', senha='abc')
+        use_case.execute(login='John', senha='abc')
         assert False
     except DuplicateLogin:
         assert True

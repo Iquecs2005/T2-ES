@@ -35,7 +35,7 @@ class Recipe:
         self.descricao = descricao
         self.modo_preparo = modo_preparo
         self.preco = preco
-        if (data_insercao == None):
+        if (data_insercao is None):
             self.data_insercao = datetime.now(timezone.utc)
         else:
             self.data_insercao = data_insercao

@@ -1,4 +1,3 @@
-from typing import List
 
 from domain.entities.user import User
 from infra.db.models.user_model import UserModel

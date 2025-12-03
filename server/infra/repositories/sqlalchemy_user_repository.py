@@ -1,4 +1,4 @@
-from typing import Callable, List, Optional
+from typing import Callable, Optional
 
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
@@ -58,6 +58,6 @@ class SqlAlchemyUserRepository(UserRepository):
                 .filter(UserModel.login == login)
                 .first()
             )
-            return model != None
+            return model is not None
         finally:
             session.close()

@@ -1,8 +1,6 @@
 from datetime import datetime, timezone
-from typing import Optional
 
-from sqlalchemy import Column, DateTime, Float, Integer, String
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, DateTime, String
 from infra.db.base import Base
 
 class UserModel(Base):

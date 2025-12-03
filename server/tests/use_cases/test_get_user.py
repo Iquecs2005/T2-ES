@@ -1,4 +1,3 @@
-import pytest
 
 from domain.entities.user import User
 from domain.interfaces.user_repository import UserRepository
@@ -48,7 +47,7 @@ def test_execute_get_null_user() -> None:
     get_use_case = GetUserUseCase(repository)
 
     try:
-        user = get_use_case.execute(login='John', senha='abc')
+        get_use_case.execute(login='John', senha='abc')
         assert False
     except UserNotFound:
         assert True
@@ -65,7 +64,7 @@ def test_execute_get_incorrect_senha() -> None:
     assert repository.get("John", "abc") is created
 
     try:
-        user = get_use_case.execute(login='John', senha='abcd')
+        get_use_case.execute(login='John', senha='abcd')
         assert False
     except UserNotFound:
         assert True

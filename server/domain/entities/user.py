@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Optional
 
 @dataclass
 class User:
@@ -14,7 +13,7 @@ class User:
         self.login = login
         self.senha = senha
 
-        if (data_insercao == None):
+        if (data_insercao is None):
             self.data_insercao = datetime.now(timezone.utc)
         else:
             self.data_insercao = data_insercao

@@ -1,4 +1,3 @@
-import pytest
 
 from domain.entities.recipe import Recipe
 from domain.interfaces.recipe_repository import RecipeRepository
@@ -47,7 +46,7 @@ def test_id_does_not_exist() -> None:
     use_case = GetRecipeUseCase(repository)
 
     try:
-        result = use_case.execute(45)
+        use_case.execute(45)
         assert False
     except RecipeNotFound:
             assert True

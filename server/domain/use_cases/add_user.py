@@ -1,4 +1,3 @@
-from typing import Optional
 
 from domain.exceptions import DuplicateLogin
 from domain.entities.user import User

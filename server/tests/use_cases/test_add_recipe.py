@@ -1,4 +1,3 @@
-import pytest
 
 from domain.entities.recipe import Recipe
 from domain.interfaces.recipe_repository import RecipeRepository

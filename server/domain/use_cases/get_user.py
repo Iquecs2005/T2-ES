@@ -1,4 +1,3 @@
-from typing import Optional
 
 from domain.exceptions import UserNotFound
 from domain.entities.user import User

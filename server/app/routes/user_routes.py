@@ -1,4 +1,3 @@
-from urllib.parse import unquote
 
 from flask_openapi3 import Tag
 from app.schemas import (
