@@ -3,7 +3,7 @@ from flask_openapi3 import Tag
 
 docs_tag = Tag(
     name="Documentação",
-    description="Redireciona para a interface padrão de documentação (Swagger/Redoc/RapiDoc)",
+    description="Seleção de documentação: Swagger, Redoc ou RapiDoc",
 )
 
 

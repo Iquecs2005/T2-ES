@@ -6,9 +6,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, scoped_session, sessionmaker
 from sqlalchemy_utils import create_database, database_exists
 
-from domain.config.settings import DATABASE_URL
+from domain.config.settings import DATABASE_URL, DATABASE_DIR
 from infra.db.base import Base
-from infra.db.models import UserModel  # noqa: F401 ensure metadata is loaded
+from infra.repositories import sqlalchemy_user_repository  
+from infra.db.models import RecipeModel
+
+DATABASE_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def _ensure_sqlite_directory(database_url: str) -> None:
@@ -25,9 +28,11 @@ def build_engine(database_url: Optional[str] = None):
     connect_args = {"check_same_thread": False} if url.startswith("sqlite") else {}
     engine = create_engine(url, connect_args=connect_args, future=True, pool_pre_ping=True)
 
+    # Cria o banco se não existir (para SQLite e outros dialetos suportados pelo sqlalchemy_utils)
     if not database_exists(engine.url):
         create_database(engine.url)
 
+    # Cria as tabelas registradas no metadata
     Base.metadata.create_all(engine)
     return engine
 
@@ -41,7 +46,7 @@ SessionLocal = scoped_session(
 
 @contextmanager
 def session_scope() -> Session:
-    """Provide a transactional scope for operations."""
+    """Context manager para garantir commit/rollback."""
     session = SessionLocal()
     try:
         yield session

@@ -2,9 +2,8 @@ from typing import Optional
 
 from pydantic import BaseModel, validator
 
-
 class EnvConfigValidation(BaseModel):
-    SERVICE_NAME: str = "market-list-api"
+    SERVICE_NAME: str = "gourmet-at-home-api"
     SERVICE_VERSION: str = "1.0.0"
     SERVICE_HOST: str = "0.0.0.0"
     SERVICE_PORT: int = 5000

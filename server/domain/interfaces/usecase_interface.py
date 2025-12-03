@@ -3,8 +3,9 @@ from typing import Any
 
 
 class UseCase(ABC):
-    """Base interface for use cases."""
+    """Interface base para casos de uso."""
 
     @abstractmethod
     def execute(self, *args: Any, **kwargs: Any) -> Any:
+        """Processa a operação do caso de uso."""
         raise NotImplementedError

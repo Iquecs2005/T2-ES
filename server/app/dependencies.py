@@ -1,6 +1,10 @@
 from functools import lru_cache
 
 from domain.config import EnvConfigService
+from domain.use_cases.add_recipe import AddRecipeUseCase
+from domain.use_cases.get_recipe import GetRecipeUseCase
+from infra.db import SessionLocal
+from infra.repositories import SqlAlchemyRecipeRepository
 from infra.db.session import engine, SessionLocal
 from infra.repositories import SqlAlchemyUserRepository
 from infra.security.password_hasher import WerkzeugPasswordHasher
@@ -10,6 +14,18 @@ from domain.use_cases.auth_use_cases import LoginUserUseCase, RegisterUserUseCas
 @lru_cache
 def get_env_config_service() -> EnvConfigService:
     return EnvConfigService()
+
+@lru_cache
+def get_recipe_repository() -> SqlAlchemyRecipeRepository:
+    return SqlAlchemyRecipeRepository(SessionLocal)
+
+@lru_cache
+def get_add_recipe_use_case() -> AddRecipeUseCase:
+    return AddRecipeUseCase(get_recipe_repository())
+
+@lru_cache
+def get_get_recipe_use_case() -> GetRecipeUseCase:
+    return GetRecipeUseCase(get_recipe_repository())
 
 
 @lru_cache
