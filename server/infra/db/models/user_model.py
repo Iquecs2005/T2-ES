@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 from sqlalchemy import Column, DateTime, String
 from infra.db.base import Base
 
+
 class UserModel(Base):
     __tablename__ = "usuario"
 

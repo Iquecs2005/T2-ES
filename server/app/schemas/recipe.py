@@ -1,6 +1,6 @@
-
 from pydantic import BaseModel
 from domain.entities.recipe import Recipe
+
 
 class RecipeSchema(BaseModel):
     """Payload esperado para criação de receita."""
@@ -10,8 +10,10 @@ class RecipeSchema(BaseModel):
     modo_preparo: str
     preco: float
 
+
 class RecipeSearchByIdSchema(BaseModel):
-    id : int
+    id: int
+
 
 class RecipeViewSchema(BaseModel):
     """Representação de uma receita."""
@@ -21,6 +23,7 @@ class RecipeViewSchema(BaseModel):
     descricao: str
     modo_preparo: str
     preco: float
+
 
 def apresenta_receita(receita: Recipe) -> dict:
     """Converte a entidade de domínio para resposta JSON."""

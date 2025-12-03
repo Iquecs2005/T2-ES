@@ -1,6 +1,6 @@
-
 from domain.entities.user import User
 from infra.db.models.user_model import UserModel
+
 
 def to_domain(model: UserModel) -> User:
     return User(

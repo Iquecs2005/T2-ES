@@ -24,21 +24,13 @@ class EnvConfigService:
     def _load_config(self) -> None:
         env_vars = self._read_env_file()
         config_data = {
-            "SERVICE_NAME": self._get_env(
-                "SERVICE_NAME", env_vars, "market-list-api"
-            ),
-            "SERVICE_VERSION": self._get_env(
-                "SERVICE_VERSION", env_vars, "1.0.0"
-            ),
+            "SERVICE_NAME": self._get_env("SERVICE_NAME", env_vars, "market-list-api"),
+            "SERVICE_VERSION": self._get_env("SERVICE_VERSION", env_vars, "1.0.0"),
             "SERVICE_HOST": self._get_env("SERVICE_HOST", env_vars, "0.0.0.0"),
             "SERVICE_PORT": int(self._get_env("SERVICE_PORT", env_vars, 5000)),
             "LOG_LEVEL": self._get_env("LOG_LEVEL", env_vars, "INFO"),
-            "DATABASE_URL": self._get_env(
-                "DATABASE_URL", env_vars, DATABASE_URL
-            ),
-            "ENVIRONMENT": self._get_env(
-                "ENVIRONMENT", env_vars, "development"
-            ),
+            "DATABASE_URL": self._get_env("DATABASE_URL", env_vars, DATABASE_URL),
+            "ENVIRONMENT": self._get_env("ENVIRONMENT", env_vars, "development"),
         }
 
         self._config = EnvConfigValidation(**config_data)

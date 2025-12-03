@@ -1,8 +1,8 @@
-
 from domain.entities.recipe import Recipe
 from domain.interfaces.recipe_repository import RecipeRepository
 from domain.use_cases.add_recipe import AddRecipeUseCase
 from domain.exceptions import RecipeInvalidTitle
+
 
 class InMemoryRecipeRepository(RecipeRepository):
     def __init__(self) -> None:
@@ -32,7 +32,9 @@ def test_execute_adds_new_product() -> None:
     repository = InMemoryRecipeRepository()
     use_case = AddRecipeUseCase(repository)
 
-    created = use_case.execute(titulo="Arroz", descricao="Desc", modo_preparo="Esquenta", preco=10.5)
+    created = use_case.execute(
+        titulo="Arroz", descricao="Desc", modo_preparo="Esquenta", preco=10.5
+    )
 
     assert created.id == 1
     assert created.titulo == "Arroz"
@@ -46,8 +48,12 @@ def test_execute_duplicate_products() -> None:
     repository = InMemoryRecipeRepository()
     use_case = AddRecipeUseCase(repository)
 
-    created1 = use_case.execute(titulo="Arroz", descricao="Desc", modo_preparo="Esquenta", preco=10.5)
-    created2 = use_case.execute(titulo="Arroz", descricao="Desc", modo_preparo="Esquenta", preco=10.5)
+    created1 = use_case.execute(
+        titulo="Arroz", descricao="Desc", modo_preparo="Esquenta", preco=10.5
+    )
+    created2 = use_case.execute(
+        titulo="Arroz", descricao="Desc", modo_preparo="Esquenta", preco=10.5
+    )
 
     assert created1.id == 1
     assert created2.id == 2
@@ -58,6 +64,7 @@ def test_execute_duplicate_products() -> None:
     assert repository.get_by_id(1) is created1
     assert repository.get_by_id(2) is created2
 
+
 def test_execute_raises_titulo_not_string() -> None:
     repository = InMemoryRecipeRepository()
     use_case = AddRecipeUseCase(repository)
@@ -65,11 +72,14 @@ def test_execute_raises_titulo_not_string() -> None:
     testValues = [10, 10.5, ["alo"]]
 
     for value in testValues:
-        try: 
-            use_case.execute(titulo=value, descricao="Desc", modo_preparo="Esquenta", preco=10.5)
+        try:
+            use_case.execute(
+                titulo=value, descricao="Desc", modo_preparo="Esquenta", preco=10.5
+            )
             assert False
         except TypeError:
             assert True
+
 
 def test_execute_raises_descricao_not_string() -> None:
     repository = InMemoryRecipeRepository()
@@ -78,11 +88,14 @@ def test_execute_raises_descricao_not_string() -> None:
     testValues = [10, 10.5, ["alo"]]
 
     for value in testValues:
-        try: 
-            use_case.execute(titulo="Arroz", descricao=value, modo_preparo="Esquenta", preco=10.5)
+        try:
+            use_case.execute(
+                titulo="Arroz", descricao=value, modo_preparo="Esquenta", preco=10.5
+            )
             assert False
         except TypeError:
             assert True
+
 
 def test_execute_raises_modo_preparo_not_string() -> None:
     repository = InMemoryRecipeRepository()
@@ -91,11 +104,14 @@ def test_execute_raises_modo_preparo_not_string() -> None:
     testValues = [10, 10.5, ["alo"]]
 
     for value in testValues:
-        try: 
-            use_case.execute(titulo="Arroz", descricao="Desc", modo_preparo=value, preco=10.5)
+        try:
+            use_case.execute(
+                titulo="Arroz", descricao="Desc", modo_preparo=value, preco=10.5
+            )
             assert False
         except TypeError:
             assert True
+
 
 def test_execute_raises_preco_not_float() -> None:
     repository = InMemoryRecipeRepository()
@@ -104,24 +120,31 @@ def test_execute_raises_preco_not_float() -> None:
     testValues = ["Ab", ["alo"]]
 
     for value in testValues:
-        try: 
-            use_case.execute(titulo="Arroz", descricao="Desc", modo_preparo="Esquenta", preco=value)
+        try:
+            use_case.execute(
+                titulo="Arroz", descricao="Desc", modo_preparo="Esquenta", preco=value
+            )
             assert False
         except TypeError:
             assert True
+
 
 def test_execute_raises_null_values() -> None:
     repository = InMemoryRecipeRepository()
     use_case = AddRecipeUseCase(repository)
 
     try:
-        use_case.execute(titulo="", descricao="Desc", modo_preparo="Esquenta", preco=10.5)
+        use_case.execute(
+            titulo="", descricao="Desc", modo_preparo="Esquenta", preco=10.5
+        )
         assert False
     except RecipeInvalidTitle:
         assert True
-    
+
     try:
-        use_case.execute(titulo="a"*141, descricao="Desc", modo_preparo="Esquenta", preco=10.5)
+        use_case.execute(
+            titulo="a" * 141, descricao="Desc", modo_preparo="Esquenta", preco=10.5
+        )
         assert False
     except RecipeInvalidTitle:
         assert True

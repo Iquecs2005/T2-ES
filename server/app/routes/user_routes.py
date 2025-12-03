@@ -1,11 +1,5 @@
-
 from flask_openapi3 import Tag
-from app.schemas import (
-    ErrorSchema,
-    UserSchema,
-    UserViewSchema,
-    apresenta_user
-)
+from app.schemas import ErrorSchema, UserSchema, UserViewSchema, apresenta_user
 from domain.exceptions import UserNotFound
 from domain.use_cases.add_user import AddUserUseCase
 from domain.use_cases.get_user import GetUserUseCase
@@ -14,6 +8,7 @@ receita_tag = Tag(
     name="Receita",
     description="Adição, visualização e remoção de receitas à base",
 )
+
 
 def register_user_routes(
     app,
@@ -37,7 +32,7 @@ def register_user_routes(
             return apresenta_user(user), 200
         except Exception:
             return {"mesage": "Não foi possível salvar novo item :/"}, 400
-        
+
     @app.get(
         "/user",
         tags=[receita_tag],

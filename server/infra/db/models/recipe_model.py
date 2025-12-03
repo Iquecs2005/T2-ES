@@ -4,6 +4,7 @@ from typing import Optional
 from sqlalchemy import Column, DateTime, Float, Integer, String
 from infra.db.base import Base
 
+
 class RecipeModel(Base):
     __tablename__ = "receita"
 

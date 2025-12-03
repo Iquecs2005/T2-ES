@@ -1,11 +1,10 @@
-
 from flask_openapi3 import Tag
 from app.schemas import (
     ErrorSchema,
     RecipeSchema,
     RecipeViewSchema,
     RecipeSearchByIdSchema,
-    apresenta_receita
+    apresenta_receita,
 )
 from domain.exceptions import RecipeNotFound
 from domain.use_cases.add_recipe import AddRecipeUseCase
@@ -16,10 +15,9 @@ receita_tag = Tag(
     description="Adição, visualização e remoção de receitas à base",
 )
 
+
 def register_recipe_routes(
-    app,
-    add_use_case: AddRecipeUseCase,
-    get_use_case: GetRecipeUseCase
+    app, add_use_case: AddRecipeUseCase, get_use_case: GetRecipeUseCase
 ) -> None:
     @app.post(
         "/receita",
@@ -40,7 +38,7 @@ def register_recipe_routes(
             return apresenta_receita(receita), 200
         except Exception:
             return {"mesage": "Não foi possível salvar novo item :/"}, 400
-        
+
     @app.get(
         "/receita",
         tags=[receita_tag],

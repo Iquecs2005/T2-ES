@@ -1,9 +1,9 @@
-
 from domain.entities.user import User
 from domain.interfaces.user_repository import UserRepository
 from domain.use_cases.add_user import AddUserUseCase
 from domain.use_cases.get_user import GetUserUseCase
 from domain.exceptions import UserNotFound
+
 
 class InMemoryUserRepository(UserRepository):
     def __init__(self) -> None:
@@ -18,7 +18,7 @@ class InMemoryUserRepository(UserRepository):
             if u.login == login and u.senha == senha:
                 return u
         return None
-    
+
     def duplicated_login(self, login: str) -> bool:
         for u in self._users:
             if u.login == login:
@@ -31,13 +31,13 @@ def test_execute_get_new_user() -> None:
     add_use_case = AddUserUseCase(repository)
     get_use_case = GetUserUseCase(repository)
 
-    created = add_use_case.execute(login='John', senha='abc')
+    created = add_use_case.execute(login="John", senha="abc")
 
     assert created.login == "John"
     assert created.senha == "abc"
     assert repository.get("John", "abc") is created
 
-    user = get_use_case.execute(login='John', senha='abc')
+    user = get_use_case.execute(login="John", senha="abc")
 
     assert created is user
 
@@ -47,24 +47,25 @@ def test_execute_get_null_user() -> None:
     get_use_case = GetUserUseCase(repository)
 
     try:
-        get_use_case.execute(login='John', senha='abc')
+        get_use_case.execute(login="John", senha="abc")
         assert False
     except UserNotFound:
         assert True
+
 
 def test_execute_get_incorrect_senha() -> None:
     repository = InMemoryUserRepository()
     add_use_case = AddUserUseCase(repository)
     get_use_case = GetUserUseCase(repository)
 
-    created = add_use_case.execute(login='John', senha='abc')
+    created = add_use_case.execute(login="John", senha="abc")
 
     assert created.login == "John"
     assert created.senha == "abc"
     assert repository.get("John", "abc") is created
 
     try:
-        get_use_case.execute(login='John', senha='abcd')
+        get_use_case.execute(login="John", senha="abcd")
         assert False
     except UserNotFound:
         assert True

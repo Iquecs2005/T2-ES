@@ -53,11 +53,7 @@ class SqlAlchemyUserRepository(UserRepository):
     def duplicated_login(self, login: str) -> bool:
         session = self._session_factory()
         try:
-            model = (
-                session.query(UserModel)
-                .filter(UserModel.login == login)
-                .first()
-            )
+            model = session.query(UserModel).filter(UserModel.login == login).first()
             return model is not None
         finally:
             session.close()

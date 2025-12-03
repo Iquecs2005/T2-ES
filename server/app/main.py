@@ -21,16 +21,26 @@ info = Info(
     version=config_service.get_service_version(),
 )
 
+
 def create_app() -> OpenAPI:
     configure_logging()
     application = OpenAPI(__name__, info=info)
     CORS(application)
 
     register_docs_routes(application)
-    register_recipe_routes(application, add_use_case=get_add_recipe_use_case(), get_use_case=get_get_recipe_use_case())
-    register_user_routes(application, add_use_case=get_add_user_use_case(), get_use_case=get_get_user_use_case())
+    register_recipe_routes(
+        application,
+        add_use_case=get_add_recipe_use_case(),
+        get_use_case=get_get_recipe_use_case(),
+    )
+    register_user_routes(
+        application,
+        add_use_case=get_add_user_use_case(),
+        get_use_case=get_get_user_use_case(),
+    )
 
     return application
+
 
 app = create_app()
 

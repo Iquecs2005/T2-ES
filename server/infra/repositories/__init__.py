@@ -5,5 +5,4 @@ from infra.repositories.sqlalchemy_user_repository import (
     SqlAlchemyUserRepository,
 )
 
-__all__ = ["SqlAlchemyRecipeRepository",
-           "SqlAlchemyUserRepository"]
+__all__ = ["SqlAlchemyRecipeRepository", "SqlAlchemyUserRepository"]

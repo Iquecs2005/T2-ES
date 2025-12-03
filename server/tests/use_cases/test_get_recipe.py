@@ -1,8 +1,8 @@
-
 from domain.entities.recipe import Recipe
 from domain.interfaces.recipe_repository import RecipeRepository
 from domain.use_cases.get_recipe import GetRecipeUseCase
 from domain.exceptions import RecipeNotFound
+
 
 class InMemoryRecipeRepository(RecipeRepository):
     def __init__(self) -> None:
@@ -26,7 +26,8 @@ class InMemoryRecipeRepository(RecipeRepository):
         before = len(self._recipes)
         self._recipes = [p for p in self._recipes if p.titulo != name]
         return len(self._recipes) != before
-    
+
+
 def test_id_exists() -> None:
     repository = InMemoryRecipeRepository()
     use_case = GetRecipeUseCase(repository)
@@ -41,6 +42,7 @@ def test_id_exists() -> None:
     assert result.modo_preparo == testRecipe.modo_preparo
     assert result.preco == testRecipe.preco
 
+
 def test_id_does_not_exist() -> None:
     repository = InMemoryRecipeRepository()
     use_case = GetRecipeUseCase(repository)
@@ -49,7 +51,8 @@ def test_id_does_not_exist() -> None:
         use_case.execute(45)
         assert False
     except RecipeNotFound:
-            assert True
+        assert True
+
 
 def test_multiple_ids_counter_consistent() -> None:
     repository = InMemoryRecipeRepository()
@@ -62,7 +65,7 @@ def test_multiple_ids_counter_consistent() -> None:
     repository.add(testRecipe2)
 
     results = [use_case.execute(1), use_case.execute(2)]
-    for index,result in enumerate(results):
+    for index, result in enumerate(results):
         assert result.id == (index + 1)
         assert result.titulo == recipes[index].titulo
         assert result.descricao == recipes[index].descricao

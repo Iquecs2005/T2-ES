@@ -24,7 +24,7 @@ class SqlAlchemyRecipeRepository(RecipeRepository):
                 preco=recipe.preco,
                 data_insercao=recipe.data_insercao,
             )
-            
+
             session.add(model)
             session.commit()
             session.refresh(model)
@@ -42,9 +42,7 @@ class SqlAlchemyRecipeRepository(RecipeRepository):
         session = self._session_factory()
         try:
             model = (
-                session.query(RecipeModel)
-                .filter(RecipeModel.id == recipe_id)
-                .first()
+                session.query(RecipeModel).filter(RecipeModel.id == recipe_id).first()
             )
             return recipe_mapper.to_domain(model) if model else None
         finally:

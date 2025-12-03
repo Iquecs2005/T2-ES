@@ -2,6 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel, validator
 
+
 class EnvConfigValidation(BaseModel):
     SERVICE_NAME: str = "gourmet-at-home-api"
     SERVICE_VERSION: str = "1.0.0"
@@ -11,7 +12,9 @@ class EnvConfigValidation(BaseModel):
     DATABASE_URL: str
     ENVIRONMENT: str = "development"
 
-    @validator("SERVICE_NAME", "SERVICE_VERSION", "SERVICE_HOST", "DATABASE_URL", pre=True)
+    @validator(
+        "SERVICE_NAME", "SERVICE_VERSION", "SERVICE_HOST", "DATABASE_URL", pre=True
+    )
     def _strip_values(cls, value: Optional[str]) -> str:
         if value is None:
             raise ValueError("Valor obrigatório ausente")

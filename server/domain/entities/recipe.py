@@ -4,6 +4,7 @@ from typing import Optional
 
 from domain.exceptions import RecipeInvalidTitle
 
+
 @dataclass
 class Recipe:
     """Domain representation of a product."""
@@ -15,7 +16,9 @@ class Recipe:
     data_insercao: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     id: Optional[int] = None
 
-    def __init__(self, titulo, descricao, modo_preparo, preco, id = None, data_insercao = None):
+    def __init__(
+        self, titulo, descricao, modo_preparo, preco, id=None, data_insercao=None
+    ):
         if not isinstance(titulo, str):
             raise TypeError("titulo must be a string")
         if not isinstance(descricao, str):
@@ -35,7 +38,7 @@ class Recipe:
         self.descricao = descricao
         self.modo_preparo = modo_preparo
         self.preco = preco
-        if (data_insercao is None):
+        if data_insercao is None:
             self.data_insercao = datetime.now(timezone.utc)
         else:
             self.data_insercao = data_insercao

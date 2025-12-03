@@ -19,9 +19,7 @@ if not database_exists(engine.url):
 
 Base.metadata.create_all(engine)
 
-SessionLocal = scoped_session(
-    sessionmaker(bind=engine, expire_on_commit=False)
-)
+SessionLocal = scoped_session(sessionmaker(bind=engine, expire_on_commit=False))
 
 
 @contextmanager

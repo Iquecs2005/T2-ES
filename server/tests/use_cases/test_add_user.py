@@ -1,8 +1,8 @@
-
 from domain.entities.user import User
 from domain.interfaces.user_repository import UserRepository
 from domain.use_cases.add_user import AddUserUseCase
 from domain.exceptions import DuplicateLogin
+
 
 class InMemoryUserRepository(UserRepository):
     def __init__(self) -> None:
@@ -17,7 +17,7 @@ class InMemoryUserRepository(UserRepository):
             if u.login == login and u.senha == senha:
                 return u
         return None
-    
+
     def duplicated_login(self, login: str) -> bool:
         for u in self._users:
             if u.login == login:
@@ -29,7 +29,7 @@ def test_execute_adds_new_user() -> None:
     repository = InMemoryUserRepository()
     use_case = AddUserUseCase(repository)
 
-    created = use_case.execute(login='John', senha='abc')
+    created = use_case.execute(login="John", senha="abc")
 
     assert created.login == "John"
     assert created.senha == "abc"
@@ -40,9 +40,9 @@ def test_execute_duplicate_user() -> None:
     repository = InMemoryUserRepository()
     use_case = AddUserUseCase(repository)
 
-    use_case.execute(login='John', senha='abc')
+    use_case.execute(login="John", senha="abc")
     try:
-        use_case.execute(login='John', senha='abc')
+        use_case.execute(login="John", senha="abc")
         assert False
     except DuplicateLogin:
         assert True
