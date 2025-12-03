@@ -9,3 +9,6 @@ class RecipeInvalidTitle(CoreError):
 
 class UserNotFound(CoreError):
     """Raised when a user lookup fails."""
+
+class DuplicateLogin(CoreError):
+    """Raised when a user login is already present in database fails."""

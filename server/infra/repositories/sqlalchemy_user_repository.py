@@ -49,3 +49,15 @@ class SqlAlchemyUserRepository(UserRepository):
             return user_mapper.to_domain(model) if model else None
         finally:
             session.close()
+
+    def duplicated_login(self, login: str) -> bool:
+        session = self._session_factory()
+        try:
+            model = (
+                session.query(UserModel)
+                .filter(UserModel.login == login)
+                .first()
+            )
+            return model != None
+        finally:
+            session.close()

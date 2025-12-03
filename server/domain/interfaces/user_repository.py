@@ -16,3 +16,7 @@ class UserRepository(ABC):
     @abstractmethod
     def get(self, login: str, senha: str) -> Optional[User]:
         """Finds a recipe by id and returns the stored instance."""
+
+    @abstractmethod
+    def duplicated_login(selt, login: str) -> bool:
+        """Return true or false depending if the login is in the database."""
